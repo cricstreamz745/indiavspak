@@ -1,166 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOXIFY</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: Arial, sans-serif;
-    }
-
-    #contentFrame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Telegram Modal Styles */
-    .popup-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: none; /* initially hidden */
-      align-items: center;
-      justify-content: center;
-      z-index: 10002;
-    }
-
-    .popup-box {
-      width: 320px;
-      background: rgba(20, 20, 30, 0.8);
-      border: 1px solid rgba(173, 216, 230, 0.25);
-      border-radius: 20px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4), 0 0 80px rgba(173, 216, 230, 0.15);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      animation: fadeIn 0.5s ease forwards;
-      position: relative;
-    }
-
-    @keyframes fadeIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .popup-header {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, #00eaff, #bd00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-    }
-
-    .popup-subtitle {
-      font-size: 1rem;
-      color: #aaa;
-      margin-bottom: 1.2rem;
-    }
-
-    .popup-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .popup-buttons a,
-    .popup-buttons button {
-      padding: 0.8rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      border: none;
-    }
-
-    .join-btn {
-      background: linear-gradient(135deg, #00eaff, #9c00ff);
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
-    }
-
-    .join-btn:hover {
-      background: linear-gradient(135deg, #00ffff, #c000ff);
-      box-shadow: 0 0 16px rgba(0, 255, 255, 0.6);
-    }
-
-    .already-btn {
-      background: rgba(255,255,255,0.05);
-    }
-
-    .already-btn:hover {
-      background: rgba(255,255,255,0.15);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      font-size: 1.3rem;
-      color: #00eaff;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover {
-      color: #ff00cc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Plan Expired - Renew Now</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+            overflow: hidden;
+        }
+        
+        .container {
+            background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            max-height: 95vh;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #3498db, #2ecc71, #9b59b6);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .expired-icon {
+            font-size: 60px;
+            color: #e74c3c;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            height: 90px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .premium-features {
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+            border-left: 3px solid #3498db;
+        }
+        
+        .premium-features h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .premium-features h3 .material-icons {
+            margin-right: 6px;
+            color: #3498db;
+            font-size: 18px;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            font-size: 13px;
+        }
+        
+        .feature-list .material-icons {
+            color: #2ecc71;
+            margin-right: 6px;
+            font-size: 16px;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.6);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.6);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(to right, #9b59b6, #8e44ad);
+            color: white;
+            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.4);
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(155, 89, 182, 0.6);
+        }
+        
+        .btn .material-icons {
+            margin-right: 6px;
+            font-size: 18px;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .contact-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .contact-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .contact-link .material-icons {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: linear-gradient(to right, #ff8a00, #ff2070);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 10px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+                max-height: 98vh;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .expired-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .expired-icon .material-icons {
+                font-size: 50px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .expired-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 10px;
+            }
+            
+            .expired-icon .material-icons {
+                font-size: 45px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            
+            p {
+                font-size: 13px;
+                margin-bottom: 15px;
+            }
+            
+            .premium-features {
+                padding: 12px;
+                margin: 12px 0;
+            }
+            
+            .button-group {
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+            
+            .contact-info {
+                margin-top: 15px;
+                padding-top: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Main iframe -->
-  <iframe id="contentFrame"
-          sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
-          frameborder="0"
-          gesture="media"
-          allow="encrypted-media"
-          allowfullscreen="true"
-          scrolling="no"
-          src="https://cricketstan.github.io/channel-10">
-  </iframe>
-
-  <!-- Telegram Modal -->
-  <div class="popup-overlay" id="telegramPopup">
-    <div class="popup-box">
-      <button class="close-btn" onclick="closePopup()">×</button>
-      <div class="popup-header">Support Us!</div>
-      <div class="popup-subtitle">Join our Telegram for latest updates.</div>
-      <div class="popup-buttons">
-        <a href="https://t.me/+i539-roGagYxMTY1" target="_blank" class="join-btn">Join Now</a>
-        <button class="already-btn" onclick="closePopup()">Already Joined</button>
-      </div>
+    <div class="container">
+        <div class="badge">PREMIUM</div>
+        
+        <div class="expired-icon">
+            <span class="material-icons">error_outline</span>
+        </div>
+        
+        <h1>Your Premium Plan Has Expired</h1>
+        <p class="subtitle">Renew now to restore premium access</p>
+        <p>Your subscription has ended. Renew today to continue Sharing Links</p>
+        
+        <div class="premium-features">
+            <h3><span class="material-icons">star</span> Premium Features</h3>
+            <ul class="feature-list">
+                <li><span class="material-icons">check_circle</span> HD Live Streaming</li>
+                <li><span class="material-icons">check_circle</span> Multi-Device Access</li>
+                <li><span class="material-icons">check_circle</span> Ad-Free Experience</li>
+                <li><span class="material-icons">check_circle</span> Exclusive Content</li>
+            </ul>
+        </div>
+        
+        <div class="button-group">
+            <a href="https://t.me/+mt1NhLJlwZE5YzQ1" class="btn btn-primary">
+                <span class="material-icons">sports_esports</span> Join Here For Live Match Link
+            </a>
+            <a href="https://t.me/allrounder745" class="btn btn-secondary">
+                <span class="material-icons">autorenew</span> Renew Your Plan
+            </a>
+            <a href="#" class="btn btn-premium">
+                <span class="material-icons">workspace_premium</span> Upgrade to Premium Plus
+            </a>
+        </div>
+        
+        <div class="contact-info">
+            <p>Need assistance? Contact our developer</p>
+            <a href="https://t.me/allrounder745" class="contact-link" target="_blank">
+                <span class="material-icons">support_agent</span> t.me/allrounder745
+            </a>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Show modal automatically after 1 second
-    window.onload = function() {
-      setTimeout(() => {
-        document.getElementById('telegramPopup').style.display = 'flex';
-      }, 1000);
-    }
-
-    // Close modal function
-    function closePopup() {
-      document.getElementById('telegramPopup').style.display = 'none';
-    }
-  </script>
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add a subtle pulse animation to the expired icon
+            const expiredIcon = document.querySelector('.expired-icon');
+            setInterval(() => {
+                expiredIcon.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    expiredIcon.style.transform = 'scale(1)';
+                }, 500);
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
